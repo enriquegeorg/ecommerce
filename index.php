@@ -42,6 +42,19 @@ $app->get("/admin/logout", function() {
 $app->get("/admin/users", function() {
 	User::verifyLogin();
 	$users= User::listAll();
+	$counter1=-1;
+	if( isset($users) && ( is_array($users) || $users instanceof Traversable ) && sizeof($users) ) foreach( $users as $key1 => $value1 ){
+		$counter1++;
+		echo htmlspecialchars( $value1["iduser"], ENT_COMPAT, 'UTF-8', FALSE );
+		echo "<br>";
+		echo htmlspecialchars( $value1["desperson"], ENT_COMPAT, 'UTF-8', FALSE );
+		echo "<br>";
+		echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE );
+		echo "<br>";
+		echo htmlspecialchars( $value1["deslogin"], ENT_COMPAT, 'UTF-8', FALSE );
+		echo "<br>";
+	}
+	exit;
 	$page=new PageAdmin();
 	$page->setTpl("users", array(
 		"users"=>$users
