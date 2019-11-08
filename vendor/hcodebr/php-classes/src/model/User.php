@@ -16,6 +16,7 @@ class User extends Model{
     $results = $sql->select("SELECT * FROM tb_users WHERE deslogin=:LOGIN", array(
       ":LOGIN"=>$login
     ));
+
     if (count($results)===0){
       throw new \Exception("Usuário inexistente ou senha inválida", 1);
     }
